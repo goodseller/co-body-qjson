@@ -3,13 +3,13 @@ var request = require('supertest');
 var parse = require('..');
 var koa = require('koa');
 
-describe('parse.json(req, opts)', function(){
+describe('parse.qjson(req, opts)', function(){
   describe('with valid json', function(){
     it('should parse', function(done){
       var app = koa();
 
       app.use(function *(){
-        var body = yield parse.json(this);
+        var body = yield parse.qjson(this);
         body.should.eql({ foo: 'bar' });
         done();
       });
@@ -26,7 +26,7 @@ describe('parse.json(req, opts)', function(){
       var app = koa();
 
       app.use(function *(){
-        var body = yield parse.json(this);
+        var body = yield parse.qjson(this);
         body.foo.bar.should.equal('baz');
         this.status = 200;
       });
@@ -46,7 +46,7 @@ describe('parse.json(req, opts)', function(){
         var app = koa();
 
         app.use(function *() {
-          var body = yield parse.json(this, {strict: false});
+          var body = yield parse.qjson(this, {strict: false});
           body.should.equal('');
           done();
         });
@@ -62,7 +62,7 @@ describe('parse.json(req, opts)', function(){
         var app = koa();
 
         app.use(function *() {
-          var body = yield parse.json(this);
+          var body = yield parse.qjson(this);
           body.should.eql({});
           done();
         });
@@ -80,7 +80,7 @@ describe('parse.json(req, opts)', function(){
 
       app.use(function *(){
         try {
-          yield parse.json(this);
+          yield parse.qjson(this);
         } catch (err) {
           err.status.should.equal(400);
           err.body.should.equal('{"foo": "bar');
@@ -102,7 +102,7 @@ describe('parse.json(req, opts)', function(){
         var app = koa();
 
         app.use(function *(){
-          var body = yield parse.json(this, {strict: false});
+          var body = yield parse.qjson(this, {strict: false});
           body.should.equal('foo');
           done();
         });
@@ -121,7 +121,7 @@ describe('parse.json(req, opts)', function(){
 
         app.use(function *(){
           try {
-            yield parse.json(this, {strict: true});
+            yield parse.qjson(this, {strict: true});
           } catch (err) {
             err.status.should.equal(400);
             err.body.should.equal('"foo"');
@@ -144,7 +144,7 @@ describe('parse.json(req, opts)', function(){
       var app = koa();
 
       app.use(function *(){
-        this.body = yield parse.json(this, { returnRawBody: true });
+        this.body = yield parse.qjson(this, { returnRawBody: true });
       });
 
       request(app.listen())

@@ -1,9 +1,9 @@
 {
-  "name": "co-body",
-  "version": "5.1.1",
-  "repository": "cojs/co-body",
-  "description": "request body parsing for co",
+  "name": "co-body-qjson",
+  "version": "0.0.0",
+  "description": "request body with qjson parsing for co",
   "keywords": [
+    "qjson",
     "request",
     "parse",
     "parser",
@@ -14,6 +14,7 @@
   ],
   "dependencies": {
     "inflation": "^2.0.0",
+    "qjson": "0.0.1",
     "qs": "^6.4.0",
     "raw-body": "^2.2.0",
     "type-is": "^1.6.14"

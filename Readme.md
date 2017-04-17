@@ -1,29 +1,11 @@
 
-# co-body
-
-[![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
-[![David deps][david-image]][david-url]
-[![npm download][download-image]][download-url]
-
-[npm-image]: https://img.shields.io/npm/v/co-body.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/co-body
-[travis-image]: https://img.shields.io/travis/cojs/co-body.svg?style=flat-square
-[travis-url]: https://travis-ci.org/cojs/co-body
-[coveralls-image]: https://img.shields.io/coveralls/cojs/co-body.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/cojs/co-body?branch=master
-[david-image]: https://img.shields.io/david/cojs/co-body.svg?style=flat-square
-[david-url]: https://david-dm.org/cojs/co-body
-[download-image]: https://img.shields.io/npm/dm/co-body.svg?style=flat-square
-[download-url]: https://npmjs.org/package/co-body
-
-  Parse request bodies with generators inspired by [Raynos/body](https://github.com/Raynos/body).
+# co-body-qjson
+  inspired by [cojs/co-body](https://github.com/cojs/co-body).
 
 ## Installation
 
 ```bash
-$ npm install co-body
+$ npm install co-body-qjson
 ```
 
 ## Options
@@ -41,23 +23,11 @@ more options available via [raw-body](https://github.com/stream-utils/raw-body#g
 ## Example
 
 ```js
-// application/json
-var body = yield parse.json(req);
+// application/qjson
+var body = yield parse.qjson(req);
 
 // explicit limit
-var body = yield parse.json(req, { limit: '10kb' });
-
-// application/x-www-form-urlencoded
-var body = yield parse.form(req);
-
-// text/plain
-var body = yield parse.text(req);
-
-// either
-var body = yield parse(req);
-
-// custom type
-var body = yield parse(req, { textTypes: ['text', 'html'] });
+var body = yield parse.qjson(req, { limit: '10kb' });
 ```
 
 ## Koa
@@ -66,17 +36,8 @@ var body = yield parse(req, { textTypes: ['text', 'html'] });
   so that you may simply use `this` instead of `this.req`.
 
 ```js
-// application/json
-var body = yield parse.json(this);
-
-// application/x-www-form-urlencoded
-var body = yield parse.form(this);
-
-// text/plain
-var body = yield parse.text(this);
-
-// either
-var body = yield parse(this);
+// application/qjson
+var body = yield parse.qjson(this);
 ```
 
 # License
